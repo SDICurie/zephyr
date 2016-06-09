@@ -23,7 +23,8 @@
 /* declare the list of functions sorted by signature */
 #define LIST_FN_SIG_NONE						\
 	FN_SIG_NONE(nble_gap_start_adv_req)				\
-	FN_SIG_NONE(nble_gap_stop_scan_req)
+	FN_SIG_NONE(nble_gap_stop_scan_req)				\
+	FN_SIG_NONE(nble_panic_req)
 
 #define LIST_FN_SIG_S							\
 	FN_SIG_S(nble_gap_set_adv_data_req,				\

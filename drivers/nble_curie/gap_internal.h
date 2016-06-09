@@ -454,6 +454,8 @@ struct nble_uas_bucket_change {
 };
 void on_nble_uas_bucket_change(const struct nble_uas_bucket_change *p_params);
 
+void nble_panic_req(void);
+
 struct nble_version {
 	uint8_t version;
 	uint8_t major;
