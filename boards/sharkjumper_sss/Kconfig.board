@@ -1,0 +1,4 @@
+config  BOARD_SHARKJUMPER_SSS
+        bool "Sharkjumper Board - Sensor Sub System"
+        select SOC_QUARK_SE_SS
+    depends on ARC

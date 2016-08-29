@@ -1,0 +1,4 @@
+config  BOARD_SHARKJUMPER
+        bool "Sharkjumper Board (Lakemont)"
+        select SOC_QUARK_SE
+	depends on X86
