@@ -1,0 +1,6 @@
+if BOARD_SHARKJUMPER
+
+config BOARD
+        default "sharkjumper"
+
+endif # BOARD_SHARKJUMPER
