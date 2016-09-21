@@ -1,0 +1,4 @@
+config  BOARD_KOBE_SSS
+        bool "Kobe Board - Sensor Sub System"
+        select SOC_QUARK_SE_SS
+        depends on ARC

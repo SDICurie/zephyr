@@ -1,0 +1,6 @@
+if BOARD_KOBE
+
+config BOARD
+        default "kobe"
+
+endif # BOARD_KOBE

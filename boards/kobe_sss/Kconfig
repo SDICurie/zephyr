@@ -1,0 +1,6 @@
+if BOARD_KOBE_SSS
+
+config BOARD
+        default "kobe_sss"
+
+endif # BOARD_KOBE_SSS
