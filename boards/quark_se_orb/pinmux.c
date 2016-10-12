@@ -23,7 +23,7 @@
 #include "pinmux/pinmux.h"
 #include "quark_se_pinmux_common.h"
 
-#define PINMUX_SELECT_OFFSET	0x30
+#define PINMUX_SELECT_OFFSET    0x30
 
 #define PINMUX_SELECT_REGISTER(base, reg_offset) \
 	(base + PINMUX_SELECT_OFFSET + (reg_offset << 2))
@@ -126,7 +126,7 @@
 /* 67 D12, gpio_ss_14, clkout_32khz, NA */
 /* 68 C12, gpio_ss_15, clkout_16mhz, NA */
 
-static uint32_t mux_config[PINMUX_MAX_REGISTERS] = { 0, 0, 0, 0, 0};
+static uint32_t mux_config[PINMUX_MAX_REGISTERS] = { 0, 0, 0, 0, 0 };
 
 struct pinmux_config board_pmux = {
 	.base_address = CONFIG_PINMUX_BASE,
@@ -134,12 +134,12 @@ struct pinmux_config board_pmux = {
 
 int pinmux_initialize(struct device *port)
 {
-	int i=0;
+	int i = 0;
 
 	quark_se_pinmux_initialize_common(port, mux_config);
 
-	PIN_CONFIG(mux_config,  8, PINMUX_FUNC_C);
-	PIN_CONFIG(mux_config,  9, PINMUX_FUNC_C);
+	PIN_CONFIG(mux_config, 8, PINMUX_FUNC_C);
+	PIN_CONFIG(mux_config, 9, PINMUX_FUNC_C);
 	PIN_CONFIG(mux_config, 10, PINMUX_FUNC_B);
 	PIN_CONFIG(mux_config, 11, PINMUX_FUNC_B);
 	PIN_CONFIG(mux_config, 12, PINMUX_FUNC_B);
@@ -147,23 +147,27 @@ int pinmux_initialize(struct device *port)
 	PIN_CONFIG(mux_config, 42, PINMUX_FUNC_B);
 	PIN_CONFIG(mux_config, 43, PINMUX_FUNC_B);
 	PIN_CONFIG(mux_config, 44, PINMUX_FUNC_B);
-	PIN_CONFIG(mux_config, 46, PINMUX_FUNC_B);
-	PIN_CONFIG(mux_config, 47, PINMUX_FUNC_B);
 	PIN_CONFIG(mux_config, 55, PINMUX_FUNC_B);
 	PIN_CONFIG(mux_config, 56, PINMUX_FUNC_B);
 	PIN_CONFIG(mux_config, 57, PINMUX_FUNC_B);
+    /* SPI1 CSs should be regarded as GPIOs */
+	PIN_CONFIG(mux_config, 45, PINMUX_FUNC_A);
+	PIN_CONFIG(mux_config, 46, PINMUX_FUNC_A);
+	PIN_CONFIG(mux_config, 47, PINMUX_FUNC_A);
+	PIN_CONFIG(mux_config, 48, PINMUX_FUNC_A);
 
 
 	for (i = 0; i < PINMUX_MAX_REGISTERS; i++) {
-		sys_write32(mux_config[i], PINMUX_SELECT_REGISTER(board_pmux.base_address, i));
+		sys_write32(mux_config[i],
+			    PINMUX_SELECT_REGISTER(board_pmux.base_address, i));
 	}
 	return DEV_OK;
 }
 
 DEVICE_INIT(pmux,                   /* config name */
-			PINMUX_NAME,            /* driver name */
-			&pinmux_initialize,     /* init function */
-			NULL,
-			&board_pmux,            /* config options*/
-			SECONDARY,
-			CONFIG_KERNEL_INIT_PRIORITY_DEFAULT);
+	    PINMUX_NAME,                        /* driver name */
+	    &pinmux_initialize,                 /* init function */
+	    NULL,
+	    &board_pmux,                        /* config options*/
+	    SECONDARY,
+	    CONFIG_KERNEL_INIT_PRIORITY_DEFAULT);
