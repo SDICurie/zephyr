@@ -125,14 +125,13 @@
 /* 66 B11, gpio_ss_13, pwm_3, NA */			/* IO9 */
 /* 67 D12, gpio_ss_14, clkout_32khz, NA */
 /* 68 C12, gpio_ss_15, clkout_16mhz, NA */
-static void pinmux_sharkjumper_board(uint32_t *mux_config)
+static void pinmux_kobe_board(uint32_t *mux_config)
 {
 	/*
 	 * While it is not necessary to specify the pinmux for function A,
 	 * since that is the default, they are put here explicitly for
 	 * documentation purposes.
 	 */
-
 	/* GPIO[0]/AIN[0]/SPI_S_CS_B */
 	PIN_CONFIG(mux_config, 0, PINMUX_FUNC_B);
 	/* GPIO[1]/AIN[1]/SPI_S_MISO */
@@ -149,19 +148,15 @@ static void pinmux_sharkjumper_board(uint32_t *mux_config)
 	PIN_CONFIG(mux_config, 6, PINMUX_FUNC_A);
 	/* GPIO[7]/AIN[7] */
 	PIN_CONFIG(mux_config, 7, PINMUX_FUNC_B);
-	/* GPIO_SS[0]/AIN[8]/UART1_CTS_B */
-	PIN_CONFIG(mux_config, 8, PINMUX_FUNC_C);
-	/* GPIO_SS[1]/AIN[9]/UART1_RTS_B */
-	PIN_CONFIG(mux_config, 9, PINMUX_FUNC_C);
 	/* GPIO_SS[2]/AIN[10] - BATT_FG_EN */
 	PIN_CONFIG(mux_config, 10, PINMUX_FUNC_A);
-	/* GPIO_SS[3]/AIN[11] - GPS_WAKEUP */
+	/* GPIO_SS[3]/AIN[11] - RF_WAKEUP */
 	PIN_CONFIG(mux_config, 11, PINMUX_FUNC_A);
-	/* GPIO_SS[4]/AIN[12] - GPS_ON_OFF */
+	/* GPIO_SS[4]/AIN[12] - RF_RESET */
 	PIN_CONFIG(mux_config, 12, PINMUX_FUNC_A);
-
+	/* GPIO_SS[5]/AIN[13] - RST# */
 	PIN_CONFIG(mux_config, 13, PINMUX_FUNC_A);
-	/* GPIO_SS[6]/AIN[14] - GPS_RESET */
+	/* GPIO_SS[6]/AIN[14] - GLOVE_INT */
 	PIN_CONFIG(mux_config, 14, PINMUX_FUNC_A);
 	/* GPIO_SS[7]/AIN[15] */
 	PIN_CONFIG(mux_config, 15, PINMUX_FUNC_A);
@@ -173,17 +168,17 @@ static void pinmux_sharkjumper_board(uint32_t *mux_config)
 	PIN_CONFIG(mux_config, 18, PINMUX_FUNC_A);
 	/* UART0_TXD/AIN[19] */
 	PIN_CONFIG(mux_config, 19, PINMUX_FUNC_A);
-	/* I2C0_SCL - LED Driver */
+	/* I2C0_SDA */
 	PIN_CONFIG(mux_config, 20, PINMUX_FUNC_A);
-	/* I2C0_SDA - LED Driver */
+	/* I2C0_SCL */
 	PIN_CONFIG(mux_config, 21, PINMUX_FUNC_A);
-	/* I2C0_SS_SDA - J2-PIN5 */
+	/* I2C0_SS_SDA */
 	PIN_CONFIG(mux_config, 24, PINMUX_FUNC_A);
-	/* I2C0_SS_SCL - J2-PIN4 */
+	/* I2C0_SS_SCL */
 	PIN_CONFIG(mux_config, 25, PINMUX_FUNC_A);
-	/* I2C1_SS_SDA - BARO BME280 */
+	/* I2C1_SS_SDA */
 	PIN_CONFIG(mux_config, 26, PINMUX_FUNC_A);
-	/* I2C1_SS_SCL - BARO BME280 */
+	/* I2C1_SS_SCL */
 	PIN_CONFIG(mux_config, 27, PINMUX_FUNC_A);
 	/* SPI0_SS_MISO */
 	PIN_CONFIG(mux_config, 28, PINMUX_FUNC_A);
@@ -191,13 +186,13 @@ static void pinmux_sharkjumper_board(uint32_t *mux_config)
 	PIN_CONFIG(mux_config, 29, PINMUX_FUNC_A);
 	/* SPI0_SS_SCK */
 	PIN_CONFIG(mux_config, 30, PINMUX_FUNC_A);
-	/* SPI0_SS_CS_B[0] - 24G ACCEL CS on SJ3.0 */
+	/* SPI0_SS_CS_B[0] - GYROITG-3107_CS */
 	PIN_CONFIG(mux_config, 31, PINMUX_FUNC_A);
-	/* SPI0_SS_CS_B[1] - GPS CS */
+	/* SPI0_SS_CS_B[1] - 24G ACCEL */
 	PIN_CONFIG(mux_config, 32, PINMUX_FUNC_A);
-	/* SPI0_SS_CS_B[2]/GPIO[29] - External SPI Connector CS on SJ3.0 */
+	/* SPI0_SS_CS_B[2]/GPIO[29] - ACHF-4 J6-Pin4 */
 	PIN_CONFIG(mux_config, 33, PINMUX_FUNC_A);
-	/* SPI0_SS_CS_B[3]/GPIO[30] - Charging Enable */
+	/* SPI0_SS_CS_B[3]/GPIO[30] - ARC_LEDGPIO */
 	PIN_CONFIG(mux_config, 34, PINMUX_FUNC_B);
 	/* SPI1_SS_MISO */
 	PIN_CONFIG(mux_config, 35, PINMUX_FUNC_A);
@@ -219,36 +214,36 @@ static void pinmux_sharkjumper_board(uint32_t *mux_config)
 	PIN_CONFIG(mux_config, 43, PINMUX_FUNC_B);
 	/* GPIO[10]/SPI1_M_MOSI */
 	PIN_CONFIG(mux_config, 44, PINMUX_FUNC_B);
-	/* GPIO[11]/SPI1_M_CS_B[0] - UHF_CS0 on SJ3.0 */
+	/* GPIO[11]/SPI1_M_CS_B[0] - J1-PIN8 */
 	PIN_CONFIG(mux_config, 45, PINMUX_FUNC_A);
-	/* GPIO[12]/SPI1_M_CS_B[1] - UHF_GPIO3 on SJ3.0 */
-	PIN_CONFIG(mux_config, 46, PINMUX_FUNC_B);
-	/* GPIO[13]/SPI1_M_CS_B[2] - UHF_GPIO2 on SJ3.0 */
-	PIN_CONFIG(mux_config, 47, PINMUX_FUNC_B);
-	/* GPIO[14]/SPI1_M_CS_B[3] - SJ2XB_IRQ on SJSupreme - Optional */
-	PIN_CONFIG(mux_config, 48, PINMUX_FUNC_B);
+	/* GPIO[12]/SPI1_M_CS_B[1] - MAX3107 */
+	PIN_CONFIG(mux_config, 46, PINMUX_FUNC_A);
+	/* GPIO[13]/SPI1_M_CS_B[2] */
+	PIN_CONFIG(mux_config, 47, PINMUX_FUNC_A);
+	/* GPIO[14]/SPI1_M_CS_B[3] */
+	PIN_CONFIG(mux_config, 48, PINMUX_FUNC_A);
 	/* GPIO[21]/SPI0_M_SCK */
 	PIN_CONFIG(mux_config, 55, PINMUX_FUNC_B);
 	/* GPIO[22]/SPI0_M_MISO */
 	PIN_CONFIG(mux_config, 56, PINMUX_FUNC_B);
 	/* GPIO[23]/SPI0_M_MOSI */
 	PIN_CONFIG(mux_config, 57, PINMUX_FUNC_B);
-	/* GPIO[24]/SPI0_M_CS_0 - SPI FLASH CS on SJ3.0 or MAX3107 CS on SJ Supreme */
+	/* GPIO[24]/SPI0_M_CS_0 - MODEA necessary to toggle CS as GPIO */
 	PIN_CONFIG(mux_config, 58, PINMUX_FUNC_A);
-	/* GPIO[25]/SPI0_M_CS_1 - 1GB_W# on SJ3.0 */
+	/* GPIO[25]/SPI0_M_CS_1 */
 	PIN_CONFIG(mux_config, 59, PINMUX_FUNC_A);
-	/* GPIO[26]/SPI0_M_CS_2 - 1GB_HOLD# on SJ3.0 */
+	/* GPIO[26]/SPI0_M_CS_2 - LM_LEDGPIO */
 	PIN_CONFIG(mux_config, 60, PINMUX_FUNC_A);
-	/* GPIO[27]/SPI0_M_CS[3] - BLE_SW_CLK */
+	/* GPIO[27]/SPI0_M_CS[3]- BLE_SW_CLK */
 	PIN_CONFIG(mux_config, 61, PINMUX_FUNC_A);
 	/* GPIO_SS[10]/PWM[0] - MAG_INT */
 	PIN_CONFIG(mux_config, 63, PINMUX_FUNC_A);
-	/* GPIO_SS[11]/PWM[1] */
-	PIN_CONFIG(mux_config, 64, PINMUX_FUNC_B);
-	/* GPIO_SS[12]/PWM[2] */
-	PIN_CONFIG(mux_config, 65, PINMUX_FUNC_B);
-	/* GPIO_SS[13]/PWM[3] */
-	PIN_CONFIG(mux_config, 66, PINMUX_FUNC_B);
+	/* GPIO_SS[11]/PWM[1] - IRQ# */
+	PIN_CONFIG(mux_config, 64, PINMUX_FUNC_A);
+	/* GPIO_SS[12]/PWM[2] - UWB_INT */
+	PIN_CONFIG(mux_config, 65, PINMUX_FUNC_A);
+	/* GPIO_SS[13]/PWM[3] - MAG_DRDY*/
+	PIN_CONFIG(mux_config, 66, PINMUX_FUNC_A);
 	/* sss gpio1 bit 6 */
 	PIN_CONFIG(mux_config, 67, PINMUX_FUNC_A);
 	/* sss gpio1 bit 7 */
@@ -266,7 +261,7 @@ int pinmux_initialize(struct device *port)
 	int i = 0;
 
 	quark_se_pinmux_initialize_common(port, mux_config);
-	pinmux_sharkjumper_board(mux_config);
+	pinmux_kobe_board(mux_config);
 
 	for (i = 0; i < PINMUX_MAX_REGISTERS; i++) {
 		sys_write32(mux_config[i],
